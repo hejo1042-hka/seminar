@@ -1,6 +1,11 @@
 [package]
-name = "Seminar"
+name = "seminar"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+
+[dev-dependencies]
+quickcheck = "1"
+quickcheck_macros = "1"
+proptest = "1.5.0"
