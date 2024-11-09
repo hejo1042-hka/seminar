@@ -15,22 +15,22 @@ impl<T: PartialEq + Clone> List<T> {
     }
 
     // Bug 1
-    // pub fn remove(&mut self, item: T) {
-    //     let index: Option<usize> = self.elements.iter().position(|x: &T| *x == item);
-    //     match index {
-    //         Some(i) => {
-    //             self.elements.remove(i);
-    //         }
-    //         _ => {
-    //             // Do nothing
-    //         }
-    //     }
-    // }
+    pub fn remove(&mut self, item: T) {
+        let index: Option<usize> = self.elements.iter().position(|x: &T| *x == item);
+        match index {
+            Some(i) => {
+                self.elements.remove(i);
+            }
+            _ => {
+                // Do nothing
+            }
+        }
+    }
 
     // Bug 2
-    pub fn remove(&mut self, _item: T) {
-        self.elements = Vec::new();
-    }
+    // pub fn remove(&mut self, _item: T) {
+    //     self.elements = Vec::new();
+    // }
 
     // fixed version of remove
     // pub fn remove(&mut self, item: T) {
@@ -55,20 +55,20 @@ impl<T: PartialEq + Clone> List<T> {
         self.elements.iter().position(|x: &T| *x == item)
     }
 
-    // pub fn get(&mut self, index: usize) -> Option<T> {
-    //     let element = self.elements.get(index);
-    //     match element {
-    //         None => {None}
-    //         Some(item) => {Some(item.clone())}
-    //     }
-    // }
+    pub fn get(&mut self, index: usize) -> Option<T> {
+        let element = self.elements.get(index);
+        match element {
+            None => {None}
+            Some(item) => {Some(item.clone())}
+        }
+    }
 }
 
-impl<T: PartialEq + Clone> IntoIterator for List<T> {
+impl<'a, T: PartialEq + Clone> IntoIterator for &'a List<T> {
     type Item = T;
-    type IntoIter = std::vec::IntoIter<Self::Item>;
+    type IntoIter = std::vec::IntoIter<T>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.elements.into_iter()
+        self.elements.iter().cloned().collect::<Vec<T>>().into_iter()
     }
 }
