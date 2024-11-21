@@ -1,8 +1,8 @@
 use proptest::collection::vec;
 use proptest::prelude::*;
-use seminar::list::List;
-use proptest::strategy::Strategy;
 use proptest::prelude::{any, proptest};
+use proptest::strategy::Strategy;
+use seminar::list::List;
 
 // proptest! {
 //     #[test]
@@ -25,14 +25,13 @@ use proptest::prelude::{any, proptest};
 // }
 
 fn own_list_large() -> impl Strategy<Value = List<i32>> {
-    vec(any::<i32>(), 1..100)
-        .prop_map(|x| {
-            let mut list = List::new();
-            for item in x {
-                list.push(item);
-            }
-            list
-        })
+    vec(any::<i32>(), 1..100).prop_map(|x| {
+        let mut list = List::new();
+        for item in x {
+            list.push(item);
+        }
+        list
+    })
 }
 
 proptest! {
@@ -51,14 +50,13 @@ proptest! {
 }
 
 fn own_list() -> impl Strategy<Value = List<i32>> {
-    vec(0..30, 1..100)
-        .prop_map(|x| {
-            let mut list = List::new();
-            for item in x {
-                list.push(item);
-            }
-            list
-        })
+    vec(0..30, 1..100).prop_map(|x| {
+        let mut list = List::new();
+        for item in x {
+            list.push(item);
+        }
+        list
+    })
 }
 
 proptest! {

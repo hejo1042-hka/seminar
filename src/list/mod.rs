@@ -58,8 +58,8 @@ impl<T: PartialEq + Clone> List<T> {
     pub fn get(&mut self, index: usize) -> Option<T> {
         let element = self.elements.get(index);
         match element {
-            None => {None}
-            Some(item) => {Some(item.clone())}
+            None => None,
+            Some(item) => Some(item.clone()),
         }
     }
 }
@@ -69,6 +69,10 @@ impl<'a, T: PartialEq + Clone> IntoIterator for &'a List<T> {
     type IntoIter = std::vec::IntoIter<T>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.elements.iter().cloned().collect::<Vec<T>>().into_iter()
+        self.elements
+            .iter()
+            .cloned()
+            .collect::<Vec<T>>()
+            .into_iter()
     }
 }

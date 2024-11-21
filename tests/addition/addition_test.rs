@@ -1,6 +1,6 @@
 use proptest::prelude::*;
-use seminar::addition::add_two_numbers;
 use proptest::prelude::{any, proptest};
+use seminar::addition::add_two_numbers;
 
 proptest! {
     #[test]
