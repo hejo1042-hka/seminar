@@ -4,22 +4,21 @@ use seminar::addition::add_two_numbers;
 
 proptest! {
     #[test]
-    fn prop_kommutativität(
-        number1 in any::<i32>(),
-        number2 in any::<i32>(),
+    fn prop_greater_zero(
+        number1 in any::<u32>(),
+        number2 in any::<u32>(),
     ) {
-        let ab = add_two_numbers(number1, number2);
-        let ba = add_two_numbers(number2, number1);
+        let result = add_two_numbers(number1, number2);
 
-        prop_assert_eq!(ab, ba);
+        prop_assert_eq!(result > 0, true);
     }
 }
 
 proptest! {
     #[test]
     fn prop_kommutativität2(
-        number1: i32,
-        number2: i32,
+        number1: u32,
+        number2: u32,
     ) {
         let ab = add_two_numbers(number1, number2);
         let ba = add_two_numbers(number2, number1);
@@ -31,7 +30,7 @@ proptest! {
 proptest! {
     #[test]
     fn prop_neutrales_element(
-        number1: i32,
+        number1: u32,
     ) {
         let result = add_two_numbers(number1, 0);
 
