@@ -16,7 +16,7 @@ proptest! {
 
 proptest! {
     #[test]
-    fn prop_kommutativität2(
+    fn prop_kommutativität(
         number1: u32,
         number2: u32,
     ) {

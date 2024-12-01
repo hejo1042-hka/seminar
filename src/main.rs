@@ -24,4 +24,12 @@ fn main() {
     println!("adding {:?} and {:?}", number1, number2);
     let result = add_two_numbers(number1, number2);
     println!("result is: {:?}", result);
+
+    // Raises an error, because this is an addition with overflow.
+    // println!("Hello, addition example 2.0!");
+    // let number1 = 656391597;
+    // let number2 = 3638575699;
+    // println!("adding {:?} and {:?}", number1, number2);
+    // let result = add_two_numbers(number1, number2);
+    // println!("result is: {:?}", result);
 }
